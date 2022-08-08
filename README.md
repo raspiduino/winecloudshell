@@ -11,7 +11,7 @@ chmod +x wcs.sh
 ./wcs.sh
 ```
 
-It will prompt you some question :)
+It will prompt you some questions, so prepare for that, and look carefully for the prompt, especially before the long xfce log appear (you might miss that, for sure) :)
 
 # Note
 Each time you choose to set `WINEPREFIX` to `/tmp/wineprefix`, it will append a new line
