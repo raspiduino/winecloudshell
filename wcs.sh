@@ -22,28 +22,13 @@ sudo apt update
 echo Installing wine...
 sudo apt install --install-recommends winehq-devel -y
 
-# Get ngrok
-wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
-tar -xvf ngrok-v3-stable-linux-amd64.tgz
-chmod +x ./ngrok
-sudo mv ngrok /usr/bin/ # Move to /usr/bin
-rm ngrok-v3-stable-linux-amd64.tgz # Clean up
-
-# ngrok login
-echo Now go to https://dashboard.ngrok.com/get-started/setup and find your token in step 2, then put it here: 
-read token
-
-# Check if the user actually copy the whole add-authtoken command or just the token itself
-if [[ $token == *"add-authtoken"* ]]; then
-    $token
-else
-	ngrok config add-authtoken $token
-fi
-
 # Start vncserver
 vncserver
 export DISPLAY=:1
 xfce4-session &
+
+# Wait for xfce to output log
+sleep 5
 
 # Configure WINEPREFIX
 # Google Cloud Shell has a really small /home parition (5GB), so you might need to change the WINEPREFIX to somewhere else
@@ -68,8 +53,26 @@ sudo mv winetricks /usr/bin/
 echo Starting wineboot...
 wineboot &
 
-# Enjoy :)
-echo Done! Enjoy your wine!
+# Get ngrok
+wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz
+tar -xvf ngrok-v3-stable-linux-amd64.tgz
+chmod +x ./ngrok
+sudo mv ngrok /usr/bin/ # Move to /usr/bin
+rm ngrok-v3-stable-linux-amd64.tgz # Clean up
+
+# ngrok login
+echo Now go to https://dashboard.ngrok.com/get-started/setup and find your token in step 2, then put it here:
+read token
+
+# Check if the user actually copy the whole add-authtoken command or just the token itself
+if [[ $token == *"add-authtoken"* ]]; then
+    $token
+else
+        ngrok config add-authtoken $token
+fi
+
+# Done, enjoy your wine
+echo Done, enjoy your Wine
 
 # Open ngrok tunnel
 ngrok tcp 5901 --region ap # You might change the region for selecting the closet server to your place :)
