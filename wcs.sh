@@ -16,6 +16,11 @@ echo Adding wine repo...
 sudo dpkg --add-architecture i386
 sudo wget -nc -O /usr/share/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 sudo wget -nc -P /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bullseye/winehq-bullseye.sources
+
+# Temporary fix for GPG key error
+sudo mkdir -pm755 /etc/apt/keyrings
+sudo mv /usr/share/keyrings/winehq-archive.key /etc/apt/keyrings/winehq-archive.key
+
 sudo apt update
 
 # Install wine
