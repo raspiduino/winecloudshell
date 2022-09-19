@@ -26,7 +26,7 @@ sudo apt update
 # Install wine
 echo Installing wine...
 sudo apt install --install-recommends winehq-staging -y
-export PATH=$PATH:/opt/wine-staging/bin
+echo 'export PATH=$PATH:/opt/wine-staging/bin' >> ~/.bashrc
 
 # Start vncserver
 vncserver
