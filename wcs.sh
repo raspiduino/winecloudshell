@@ -25,7 +25,7 @@ sudo apt update
 
 # Install wine
 echo Installing wine...
-sudo apt install --install-recommends winehq-staging:i386 winehq-staging -y
+sudo apt install --install-recommends winehq-staging -y
 
 # Start vncserver
 vncserver
